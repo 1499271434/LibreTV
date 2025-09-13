@@ -1,7 +1,11 @@
-/* 添加重定向页面的基本样式 */
+/* 重定向页面的基本样式 */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f1622;
+    background: 
+        radial-gradient(ellipse at top left, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at top right, rgba(255, 64, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom center, rgba(26, 31, 58, 0.8) 0%, transparent 70%),
+        linear-gradient(135deg, #080911 0%, #0f1524 50%, #1a1f3a 100%);
     color: white;
     margin: 0;
     padding: 0;
@@ -9,6 +13,37 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(255, 64, 129, 0.025) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(150, 200, 255, 0.02) 1px, transparent 1px);
+    background-size: 120px 120px, 80px 80px, 200px 200px;
+    background-position: 0 0, 40px 40px, 100px 100px;
+    pointer-events: none;
+    z-index: -1;
+    animation: subtleFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes subtleFloat {
+    0% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 0.9;
+    }
 }
 
 .redirect-container {
@@ -16,12 +51,15 @@ body {
     max-width: 90%;
     width: 380px;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 212, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .logo-container {
@@ -34,14 +72,14 @@ body {
 .logo-icon {
     width: 40px;
     height: 40px;
-    color: #00ccff;
+    color: #00d4ff;
     margin-right: 10px;
 }
 
 .logo-text {
     font-size: 2rem;
     margin: 0;
-    background: linear-gradient(to right, #00ccff, #ff3c78);
+    background: linear-gradient(to right, #00d4ff, #ff4081);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -53,7 +91,7 @@ body {
     height: 50px;
     border: 3px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    border-top-color: #00ccff;
+    border-top-color: #00d4ff;
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
 }
@@ -82,18 +120,19 @@ body {
 }
 
 .redirect-hint a {
-    color: #00ccff;
+    color: #00d4ff;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.2s ease;
     padding: 5px 10px;
-    border-radius: 4px;
-    background-color: rgba(0, 204, 255, 0.1);
+    border-radius: 6px;
+    background-color: rgba(0, 212, 255, 0.1);
 }
 
 .redirect-hint a:hover {
-    background-color: rgba(0, 204, 255, 0.2);
+    background-color: rgba(0, 212, 255, 0.2);
     text-decoration: underline;
+    transform: translateY(-1px);
 }
 
 /* 移动端优化 */

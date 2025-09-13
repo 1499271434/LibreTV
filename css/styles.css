@@ -37,33 +37,83 @@ LibreTV 全局样式
 }
 
 :root {
-    /* 赛博影视主题配色方案 - 柔和版 */
-    --primary-color: #00ccff;       /* 霓虹蓝主色调 */
-    --primary-light: #33d6ff;       /* 浅霓虹蓝变体 */
-    --secondary-color: #0f1622;     /* 深蓝黑背景色 */
-    --accent-color: #ff3c78;        /* 霓虹粉强调色 */
-    --text-color: #e6f2ff;          /* 柔和的蓝白色文本 */
-    --text-muted: #8599b2;          /* 淡蓝灰色次级文本 */
-    --border-color: rgba(0, 204, 255, 0.15);
-    --page-gradient-start: #0f1622; /* 深蓝黑起始色 */
-    --page-gradient-end: #192231;   /* 深靛蓝结束色 */
-    --card-gradient-start: #121b29; /* 卡片起始色 */
-    --card-gradient-end: #1c2939;   /* 卡片结束色 */
-    --card-accent: rgba(0, 204, 255, 0.12); /* 霓虹蓝卡片强调色 */
-    --card-hover-border: rgba(0, 204, 255, 0.5); /* 悬停边框颜色 */
+    /* 高级主题配色方案 - 精致版 */
+    --primary-color: #00d4ff;       /* 亮蓝主色调 */
+    --primary-light: #33ddff;       /* 浅亮蓝变体 */
+    --secondary-color: #0a0b1e;     /* 深太空蓝背景色 */
+    --accent-color: #ff4081;        /* 精致粉红强调色 */
+    --text-color: #f0f4f8;          /* 纯净白色文本 */
+    --text-muted: #94a3b8;          /* 柔和灰蓝色次级文本 */
+    --border-color: rgba(0, 212, 255, 0.12);
+    --page-gradient-start: #080911; /* 深黑紫起始色 */
+    --page-gradient-mid: #0f1524;   /* 中间色 */
+    --page-gradient-end: #1a1f3a;   /* 深蓝紫结束色 */
+    --card-gradient-start: #151926; /* 卡片起始色 */
+    --card-gradient-end: #1e2540;   /* 卡片结束色 */
+    --card-accent: rgba(0, 212, 255, 0.08); /* 亮蓝卡片强调色 */
+    --card-hover-border: rgba(0, 212, 255, 0.6); /* 悬停边框颜色 */
+    --surface-primary: rgba(15, 21, 36, 0.95); /* 主要表面色 */
+    --surface-secondary: rgba(26, 31, 58, 0.85); /* 次要表面色 */
+    --glass-bg: rgba(255, 255, 255, 0.03); /* 毛玻璃背景 */
+    --glass-border: rgba(255, 255, 255, 0.08); /* 毛玻璃边框 */
 }
 
 .page-bg {
-    background: linear-gradient(180deg, var(--page-gradient-start), var(--page-gradient-end));
+    background: 
+        /* 主渐变背景 */
+        radial-gradient(ellipse at top left, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at top right, rgba(255, 64, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom center, rgba(26, 31, 58, 0.8) 0%, transparent 70%),
+        linear-gradient(135deg, var(--page-gradient-start) 0%, var(--page-gradient-mid) 50%, var(--page-gradient-end) 100%);
     min-height: 100vh;
-    /* 柔和赛博点状背景 */
+    position: relative;
+    overflow-x: hidden;
+}
+
+.page-bg::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: 
-        linear-gradient(180deg, var(--page-gradient-start), var(--page-gradient-end)),
-        radial-gradient(circle at 25px 25px, rgba(0, 204, 255, 0.04) 2px, transparent 3px),
-        radial-gradient(circle at 75px 75px, rgba(255, 60, 120, 0.02) 1px, transparent 2px),
-        radial-gradient(circle at 50px 50px, rgba(150, 255, 250, 0.015) 1px, transparent 2px);
-    background-blend-mode: normal;
-    background-size: cover, 100px 100px, 50px 50px, 75px 75px;
+        /* 精致的点状背景纹理 */
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(255, 64, 129, 0.025) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(150, 200, 255, 0.02) 1px, transparent 1px);
+    background-size: 120px 120px, 80px 80px, 200px 200px;
+    background-position: 0 0, 40px 40px, 100px 100px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.page-bg::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        /* 动态光效 */
+        radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 64, 129, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(26, 31, 58, 0.1) 0%, transparent 30%);
+    animation: subtleFloat 20s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes subtleFloat {
+    0% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 0.9;
+    }
 }
 
 button, .card-hover {
@@ -74,13 +124,19 @@ button, .card-hover {
 .card-hover {
     border: 1px solid var(--border-color);
     background: linear-gradient(135deg, var(--card-gradient-start), var(--card-gradient-end));
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 4px 16px rgba(0, 212, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* 确保卡片内容区域高度一致性 */
@@ -117,8 +173,11 @@ button, .card-hover {
 
 .card-hover:hover {
     border-color: var(--card-hover-border);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.6),
+        0 8px 24px rgba(0, 212, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .card-hover:hover::before {
@@ -137,8 +196,13 @@ button, .card-hover {
     scrollbar-color: #444 #222;
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, var(--page-gradient-end), var(--page-gradient-start));
-    border-left: 1px solid var(--primary-color);
+    background: linear-gradient(135deg, var(--surface-primary), var(--surface-secondary));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--glass-border);
+    box-shadow: 
+        -8px 0 32px rgba(0, 0, 0, 0.5),
+        inset 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .settings-panel.show {
@@ -211,8 +275,13 @@ button, .card-hover {
     width: 100%;
     transition: all 0.3s ease;
     margin-top: auto;
-    background: linear-gradient(to bottom, transparent, var(--page-gradient-start));
-    border-top: 1px solid var(--border-color);
+    background: linear-gradient(to bottom, transparent, var(--surface-primary));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    box-shadow: 
+        0 -4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .footer a:hover {
@@ -640,6 +709,13 @@ body {
     width: 320px; /* 固定宽度 */
     box-sizing: border-box; /* 确保padding不影响总宽度 */
     scrollbar-gutter: stable; /* 现代浏览器：为滚动条预留空间 */
+    background: linear-gradient(135deg, var(--surface-primary), var(--surface-secondary));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    box-shadow: 
+        8px 0 32px rgba(0, 0, 0, 0.5),
+        inset -1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .history-panel.show {
@@ -652,21 +728,26 @@ body {
 
 /* 历史记录项样式优化 */
 .history-item {
-    background: #1a1a1a;
-    border-radius: 6px; /* 减小圆角 */
-    border: 1px solid #333;
+    background: linear-gradient(135deg, var(--glass-bg), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
     overflow: hidden;
-    transition: all 0.2s ease;
-    padding: 10px 14px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 12px 16px;
     position: relative;
-    margin-bottom: 8px; /* 减小底部间距 */
-    width: 100%; /* 确保宽度一致 */
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .history-item:hover {
-    transform: translateY(-2px);
-    border-color: #444;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    border-color: var(--card-hover-border);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 4px 16px rgba(0, 212, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.12));
 }
 
 /* 添加组悬停效果，使删除按钮在悬停时显示 */
