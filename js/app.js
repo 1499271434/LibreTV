@@ -1032,7 +1032,7 @@ function closeVideoPlayer(home = false) {
             detailModal.classList.add('hidden');
         }
         // 如果启用豆瓣区域则显示豆瓣区域
-        if (localStorage.getItem('doubanEnabled') === 'true') {
+        if (localStorage.getItem('doubanEnabled') !== 'false') { // 默认为true，除非明确设置为false
             document.getElementById('doubanArea').classList.remove('hidden');
         }
     }
