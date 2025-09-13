@@ -1,23 +1,5 @@
-// 页面加载后显示弹窗脚本
+// 页面加载后处理脚本
 document.addEventListener('DOMContentLoaded', function() {
-    // 弹窗显示脚本
-    // 检查用户是否已经看过声明
-    const hasSeenDisclaimer = localStorage.getItem('hasSeenDisclaimer');
-    
-    if (!hasSeenDisclaimer) {
-        // 显示弹窗
-        const disclaimerModal = document.getElementById('disclaimerModal');
-        disclaimerModal.style.display = 'flex';
-        
-        // 添加接受按钮事件
-        document.getElementById('acceptDisclaimerBtn').addEventListener('click', function() {
-            // 保存用户已看过声明的状态
-            localStorage.setItem('hasSeenDisclaimer', 'true');
-            // 隐藏弹窗
-            disclaimerModal.style.display = 'none';
-        });
-    }
-
     // URL搜索参数处理脚本
     // 首先检查是否是播放URL格式 (/watch 开头的路径)
     if (window.location.pathname.startsWith('/watch')) {
@@ -45,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     window.history.replaceState(
                         { search: keyword }, 
-                        `搜索: ${keyword} - LibreTV`, 
+                        `搜索: ${keyword} - 奈何视频`, 
                         window.location.href
                     );
                 } catch (e) {
@@ -69,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 window.history.replaceState(
                     { search: searchQuery }, 
-                    `搜索: ${searchQuery} - LibreTV`, 
+                    `搜索: ${searchQuery} - 奈何视频`, 
                     `/s=${encodeURIComponent(searchQuery)}`
                 );
             } catch (e) {
